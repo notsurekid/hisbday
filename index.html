@@ -1,0 +1,613 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Ankit ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --pink: #ffc5dd;
+  --white: #fff6fb;
+  --muted: #c7c3df;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  background:
+    radial-gradient(ellipse at 15% 15%, #42346d 0%, transparent 42%),
+    radial-gradient(ellipse at 85% 80%, #572c59 0%, transparent 40%),
+    linear-gradient(135deg, #090b1b, #14132d 55%, #101020);
+  overflow-x: hidden;
+  cursor: none;
+}
+
+button, input { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+
+/* Floating background */
+.ambient {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: #e9a6ff;
+  filter: blur(100px);
+  opacity: .11;
+  animation: drift 13s ease-in-out infinite alternate;
+}
+.orb.one { top: 5%; left: -100px; }
+.orb.two {
+  right: -100px;
+  bottom: 5%;
+  background: #ff8fc7;
+  animation-delay: -5s;
+}
+
+@keyframes drift {
+  to { transform: translate(65px, -35px) scale(1.25); }
+}
+
+.star {
+  position: absolute;
+  color: #ffe3f1;
+  opacity: .5;
+  animation: twinkle 3s ease-in-out infinite alternate;
+}
+@keyframes twinkle {
+  from { opacity: .15; transform: scale(.7); }
+  to { opacity: .85; transform: scale(1.15); }
+}
+
+/* Custom cursor */
+#cursor {
+  position: fixed;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ffc5dd;
+  box-shadow: 0 0 18px #ff9fce;
+  pointer-events: none;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+}
+
+.trail {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  color: #ffc5dd;
+  font-size: 13px;
+  animation: trailFade .8s ease-out forwards;
+}
+@keyframes trailFade {
+  to { opacity: 0; transform: translateY(-23px) scale(.3); }
+}
+
+/* Layout */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 16px 24px;
+}
+
+.topline {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #d8c7ed;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.page {
+  display: none;
+  width: min(100%, 570px);
+  min-height: 500px;
+  padding: 35px 29px;
+  border: 1px solid rgba(255,255,255,.17);
+  border-radius: 26px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,.105),
+    rgba(255,255,255,.025)
+  );
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.28),
+    inset 0 1px rgba(255,255,255,.12);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  text-align: center;
+  animation: appear .65s ease both;
+}
+
+.page.active { display: flex; flex-direction: column; align-items: center; }
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(13px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--pink);
+  text-transform: uppercase;
+  margin: 9px 0 17px;
+}
+
+h1, h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 0 0 17px;
+}
+
+h1 { font-size: clamp(39px, 8vw, 58px); }
+h2 { font-size: clamp(32px, 7vw, 43px); }
+
+h1 em, h2 em {
+  color: var(--pink);
+  font-weight: 400;
+}
+
+p {
+  color: #d9d5e8;
+  font-size: 13px;
+  line-height: 1.95;
+  font-weight: 300;
+}
+
+.divider {
+  height: 1px;
+  width: 50px;
+  background: linear-gradient(90deg, transparent, #ffb8d7, transparent);
+  margin: 9px auto 15px;
+}
+
+.gif {
+  width: min(100%, 235px);
+  margin: 8px auto 15px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+.gif .tenor-gif-embed { max-width: 100%; }
+
+.caption {
+  color: #f5c5dd;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 21px;
+  margin: 6px 0 12px;
+}
+
+.password-box {
+  width: 100%;
+  max-width: 300px;
+  margin-top: 13px;
+}
+
+input {
+  width: 100%;
+  padding: 15px;
+  color: white;
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 12px;
+  outline: none;
+  text-align: center;
+  letter-spacing: 2px;
+}
+input:focus { border-color: #ffc5dd; }
+input::placeholder { color: #a6a1bd; letter-spacing: 1px; }
+
+.error {
+  color: #ffb2c9;
+  font-size: 12px;
+  min-height: 18px;
+  margin: 9px 0 0;
+}
+
+.nav {
+  width: min(100%, 570px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 19px;
+  gap: 10px;
+}
+
+.nav button, .unlock {
+  color: #ffe8f3;
+  background: rgba(255,255,255,.075);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 12px;
+  padding: 12px 17px;
+  cursor: pointer;
+  transition: .25s ease;
+  font-size: 12px;
+}
+
+.nav button:hover, .unlock:hover {
+  background: rgba(255,190,220,.17);
+  border-color: #ffc5dd;
+  transform: translateY(-2px);
+}
+
+.nav button:disabled {
+  opacity: .28;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.page-count {
+  color: #bcb5d5;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.footer {
+  color: #8e89a8;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-top: 21px;
+  text-align: center;
+}
+
+.note {
+  width: 100%;
+  text-align: left;
+  padding: 18px;
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 15px;
+  background: rgba(255,255,255,.035);
+  margin-top: 8px;
+}
+
+.note p { margin: 0; }
+
+.signature {
+  align-self: flex-end;
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--pink);
+  font-size: 22px;
+  font-style: italic;
+  margin-top: 15px;
+}
+
+@media (max-width: 480px) {
+  body { cursor: auto; }
+  #cursor { display: none; }
+  .wrapper { padding: 25px 13px 20px; }
+  .page { padding: 28px 20px; min-height: 490px; }
+  .gif { width: min(100%, 205px); }
+  p { font-size: 12px; }
+  .nav button { padding: 11px 12px; }
+}
+</style>
+</head>
+
+<body>
+<div class="ambient" id="ambient">
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+</div>
+
+<div id="cursor"></div>
+
+<main class="wrapper">
+  <div class="topline">a little corner of the universe · ♡</div>
+
+  <!-- PAGE 1: PASSWORD -->
+  <section class="page active" id="page0">
+    <div class="eyebrow">a little surprise for you</div>
+
+    <div class="gif">
+      <div class="tenor-gif-embed"
+        data-postid="374829618440521546"
+        data-share-method="host"
+        data-aspect-ratio="1"
+        data-width="100%">
+        <a href="https://tenor.com/view/hasu-yuki-vtuber-v-tuber-hai-gif-374829618440521546">Hasu Yuki Sticker</a>
+      </div>
+    </div>
+
+    <h1>Hey, my <em>special one.</em></h1>
+    <div class="divider"></div>
+    <p>
+      Some people leave beautiful memories behind.
+      This little space is for one of those people.
+      Enter the password and take a look. ♡
+    </p>
+
+    <div class="password-box">
+      <input id="password" type="password"
+        placeholder="Enter the secret password"
+        autocomplete="off"
+        aria-label="Secret password">
+      <button class="unlock" style="width:100%;margin-top:12px"
+        onclick="unlockSite()">Unlock with ♡</button>
+      <div class="error" id="error"></div>
+    </div>
+  </section>
+
+  <!-- PAGE 2: MY MEMORIES -->
+  <section class="page" id="page1">
+    <div class="eyebrow">01 · a little honesty</div>
+    <h2>What you <em>meant to me</em></h2>
+
+    <div class="gif">
+      <div class="tenor-gif-embed"
+        data-postid="2231201090744188281"
+        data-share-method="host"
+        data-aspect-ratio="1"
+        data-width="100%">
+        <a href="https://tenor.com/view/mafumafu-manun-chan-manun-mafu-mafuyu-gif-2231201090744188281">Mafumafu Sticker</a>
+      </div>
+    </div>
+
+    <div class="note">
+      <p>
+        Ankit, you were someone I genuinely liked, and I loved
+        the time we spent together. Talking to you, sharing little
+        moments, and simply having you around made me happy.
+        There was so much about you that I appreciated, and those
+        memories still mean something to me.
+      </p>
+      <br>
+      <p>
+        There is just one thing I wish had been different.
+        When you get angry, sometimes you say things that really
+        hurt me. I don't think anger should make hurtful words okay.
+        I hope you understand that the same words might hurt you
+        too if someone said them to you.
+      </p>
+    </div>
+  </section>
+
+  <!-- PAGE 3: BIRTHDAY WISH -->
+  <section class="page" id="page2">
+    <div class="eyebrow">02 · your special day</div>
+    <h1>Happy Birthday, <em>Ankit!</em></h1>
+
+    <div class="gif">
+      <div class="tenor-gif-embed"
+        data-postid="374972720041268031"
+        data-share-method="host"
+        data-aspect-ratio="1"
+        data-width="100%">
+        <a href="https://tenor.com/view/sparxie-lonely-lonely-dance-lonely-lonely-dance-anime-gif-374972720041268031">Sparxie Sticker</a>
+      </div>
+    </div>
+
+    <div class="caption">Another year, another chapter. ✦</div>
+    <div class="divider"></div>
+
+    <p>
+      Happy Birthday to you! I hope this new year of your life
+      brings you peace, good health, genuine happiness, and many
+      reasons to smile.
+    </p>
+    <p>
+      May the things you work for come closer to you, and may
+      you always find good people and beautiful moments along
+      the way. I hope today treats you kindly and makes you feel
+      as special as you are.
+    </p>
+
+    <p style="color:#ffc5dd;font-family:'Cormorant Garamond',serif;font-size:21px">
+      Have the loveliest birthday. ♡
+    </p>
+  </section>
+
+  <!-- PAGE 4: YOU WERE SPECIAL -->
+  <section class="page" id="page3">
+    <div class="eyebrow">03 · something worth saying</div>
+    <h2>You were <em>special.</em></h2>
+
+    <div class="gif">
+      <div class="tenor-gif-embed"
+        data-postid="17972945"
+        data-share-method="host"
+        data-aspect-ratio="1"
+        data-width="100%">
+        <a href="https://tenor.com/view/shiro-cute-no-game-no-life-gif-17972945">Shiro Cute Sticker</a>
+      </div>
+    </div>
+
+    <div class="note">
+      <p>
+        I want you to know that what I felt for you was genuine.
+        I didn't like you for no reason; there were so many little
+        things about you that made you important to me.
+      </p>
+      <br>
+      <p>
+        The time we spent together gave me memories I will always
+        value. Things between us may not be the same now, but that
+        doesn't erase the good parts or mean that I have to pretend
+        they never mattered.
+      </p>
+      <br>
+      <p>
+        I simply hope that, with time, we both learn to understand
+        each other better.
+      </p>
+    </div>
+    <div class="signature">with a little warmth, ♡</div>
+  </section>
+
+  <!-- PAGE 5: WISHES FOR YOUR FUTURE -->
+  <section class="page" id="page4">
+    <div class="eyebrow">04 · for the days ahead</div>
+    <h2>Keep <em>shining.</em></h2>
+
+    <div class="gif">
+      <div class="tenor-gif-embed"
+        data-postid="2231201090744188281"
+        data-share-method="host"
+        data-aspect-ratio="1"
+        data-width="100%">
+        <a href="https://tenor.com/view/mafumafu-manun-chan-manun-mafu-mafuyu-gif-2231201090744188281">Mafumafu Sticker</a>
+      </div>
+    </div>
+
+    <p>
+      More than anything, I want you to be happy and successful.
+      I hope you achieve the goals you dream about and become
+      someone you are proud of.
+    </p>
+    <p>
+      I hope life gives you opportunities to grow, people who
+      genuinely care about you, and enough peace to enjoy all
+      the good things you achieve.
+    </p>
+    <p>
+      Take care of yourself, keep working towards your dreams,
+      and don't forget to enjoy the little things along the way.
+    </p>
+
+    <div class="divider"></div>
+    <h2 style="font-size:32px;margin-bottom:8px">
+      Happy Birthday <em>again.</em>
+    </h2>
+    <p style="margin-top:4px">Wishing you the very best, always. ♡</p>
+    <div class="signature">— Kanak</div>
+  </section>
+
+  <nav class="nav" aria-label="Page navigation">
+    <button id="prev" onclick="changePage(-1)" disabled>🌷 Previous</button>
+    <span class="page-count" id="pageCount">01 / 05</span>
+    <button id="next" onclick="changePage(1)">Next 🌷</button>
+  </nav>
+
+  <div class="footer">MADE WITH CARE · JUST FOR YOU</div>
+</main>
+
+<script>
+let currentPage = 0;
+let unlocked = false;
+const totalPages = 5;
+
+function unlockSite() {
+  const entered = document.getElementById('password').value;
+  const error = document.getElementById('error');
+
+  if (entered === 'beastnkiddo') {
+    unlocked = true;
+    error.textContent = '';
+    showPage(1);
+  } else {
+    error.textContent = 'That password is not quite right. ♡';
+    document.getElementById('password').value = '';
+  }
+}
+
+document.getElementById('password').addEventListener('keydown', e => {
+  if (e.key === 'Enter') unlockSite();
+});
+
+function showPage(index) {
+  if (index < 0 || index >= totalPages) return;
+  if (index > 0 && !unlocked) return;
+
+  currentPage = index;
+
+  document.querySelectorAll('.page').forEach((page, i) => {
+    page.classList.toggle('active', i === index);
+  });
+
+  document.getElementById('prev').disabled = index === 0;
+  document.getElementById('next').textContent =
+    index === totalPages - 1 ? 'Again ♡' : 'Next 🌷';
+
+  document.getElementById('pageCount').textContent =
+    String(index + 1).padStart(2, '0') + ' / ' +
+    String(totalPages).padStart(2, '0');
+
+  if (index === totalPages - 1) {
+    document.getElementById('next').onclick = () => showPage(1);
+  } else {
+    document.getElementById('next').onclick = () => changePage(1);
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function changePage(direction) {
+  if (!unlocked && direction > 0) return;
+  showPage(currentPage + direction);
+}
+
+/* Floating background stars */
+const ambient = document.getElementById('ambient');
+for (let i = 0; i < 34; i++) {
+  const star = document.createElement('span');
+  star.className = 'star';
+  star.textContent = Math.random() > .5 ? '✦' : '·';
+  star.style.left = Math.random() * 100 + '%';
+  star.style.top = Math.random() * 100 + '%';
+  star.style.fontSize = (8 + Math.random() * 10) + 'px';
+  star.style.animationDelay = Math.random() * 4 + 's';
+  ambient.appendChild(star);
+}
+
+/* Custom cursor and little sparkle trail */
+const cursor = document.getElementById('cursor');
+let lastTrail = 0;
+
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+
+  const now = Date.now();
+  if (now - lastTrail > 90) {
+    lastTrail = now;
+    const trail = document.createElement('span');
+    trail.className = 'trail';
+    trail.textContent = Math.random() > .5 ? '✦' : '♡';
+    trail.style.left = e.clientX + 'px';
+    trail.style.top = e.clientY + 'px';
+    document.body.appendChild(trail);
+    setTimeout(() => trail.remove(), 800);
+  }
+});
+
+/* Small touch-screen sparkle when tapping */
+document.addEventListener('click', e => {
+  if (e.target.closest('button')) return;
+  const sparkle = document.createElement('span');
+  sparkle.className = 'trail';
+  sparkle.textContent = '♡';
+  sparkle.style.left = e.clientX + 'px';
+  sparkle.style.top = e.clientY + 'px';
+  document.body.appendChild(sparkle);
+  setTimeout(() => sparkle.remove(), 800);
+});
+
+/* Load the Tenor embeds */
+</script>
+<script async src="https://tenor.com/embed.js"></script>
+</body>
+</html>
